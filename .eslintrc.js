@@ -70,7 +70,23 @@ module.exports = {
     ],
 
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+    // 不要留超过规定数目的空白行
+    "no-multiple-empty-lines": [2, { "max": 3 }],
+
+    // 不能使用__dirname或__filename做路径拼接
+    "no-path-concat": 0,
+
+    // 禁止行末加空格关闭
+    "no-trailing-spaces": "off",
+
+    // 规定了参数是否需要圆括号包围
+    'arrow-parens': 0,
+
+    // 规定generator函数中星号前后的空白
+    'generator-star-spacing': 0
   },
 
   "overrides": [

@@ -10,12 +10,15 @@
 <script>
   import Logo from '../components/Logo.vue'
 
+
   export default {
     data () {
       return {
         name: 'vue'
       }
     },
+
+
     components: {
       Logo
     }

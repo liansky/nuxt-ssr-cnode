@@ -8,19 +8,18 @@
 </template>
 
 <script>
-import Logo from '../components/Logo.vue'
+  import Logo from '../components/Logo.vue'
 
-export default {
-  data () {
-    return {
-      name: 'vue'
+  export default {
+    data () {
+      return {
+        name: 'vue'
+      }
+    },
+    components: {
+      Logo
     }
-  },
-  components: {
-    Logo
   }
-
-}
 </script>
 
 <style lang="scss">

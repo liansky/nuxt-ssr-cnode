@@ -31,9 +31,12 @@ module.exports = {
     FaceDetector: true,
     requestAnimFrame: true,
   },
-  // add your custom rules here
+  // 规则
   rules: {
-    // https://vuejs.github.io/eslint-plugin-vue/rules/order-in-components.html
+    /**
+     * vue文件属性顺序
+     * vue/recommended 配置https://vuejs.github.io/eslint-plugin-vue/rules/order-in-components.html
+     */
     "vue/order-in-components": ["error", {
       "order": [
         "el",
@@ -56,7 +59,26 @@ module.exports = {
         "renderError"
       ]
     }],
+
+    // vue script 首行2空格缩进, 配合overrides只在.vue中起作用
+    'vue/script-indent': [
+      'error',
+      2,
+      {
+        'baseIndent': 1
+      }
+    ],
+
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+  },
+
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "indent": "off"
+      }
+    }
+  ]
 }

@@ -62,9 +62,7 @@ module.exports = {
 
     // vue script 首行2空格缩进, 配合overrides只在.vue中起作用
     'vue/script-indent': [
-      'error',
-      2,
-      {
+      'error', 2, {
         'baseIndent': 1
       }
     ],

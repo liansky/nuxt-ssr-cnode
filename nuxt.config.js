@@ -10,11 +10,22 @@ module.exports = {
     title: pkg.name,
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
+      { name: 'viewport', content: 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'keywords', name: 'keywords', content: 'Vue开发者,前端技术开发,javascript技术' },
       { hid: 'description', name: 'description', content: pkg.description }
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        body: false,
+        type: 'text/javascript',
+        src: '/js/ant.js'
+      }
     ]
   },
 
@@ -49,14 +60,24 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  icon: {
+    iconSrc: '/static/icon.png',
+    sizes: [16, 120, 144, 152, 192, 384, 512]
+  },
+
   /*
   ** Build configuration
   */
   build: {
+    publicPath: 'http://h5.9f.cn' + '/_nuxt/',
+    postcss: {
+    },
+    // 单独提取 css
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({

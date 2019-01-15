@@ -1,9 +1,20 @@
 <template>
   <section class="container">
     <Logo/>
-    <p class="name">
-      {{ name }}
-    </p>
+    <h3 class="title">
+      {{ title }}
+    </h3>
+    <ul class="list">
+      <li>
+        <nuxt-link to="/article/1">文章1</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/article/2">文章2</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/article/3">文章3</nuxt-link>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -12,9 +23,11 @@
 
 
   export default {
+    name: 'Index',
+
     data () {
       return {
-        name: 'vue'
+        title: 'nuxt-ssr-cnode'
       }
     },
 
@@ -28,9 +41,12 @@
 <style lang="scss">
 
 .container {
-  text-align: center;
-  .name {
-    color: red;
+  .title {
+    color: #333;
+    font-size: .42rem;
+  }
+  .list {
+    font-size: .28rem;
   }
 }
 </style>

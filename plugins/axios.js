@@ -45,7 +45,12 @@ export function fetch (url, { data, params, headers, dataType = 'json', type = '
 
   let defaultHeader = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'platform': 'weixin'
+    'platform': 'weixin', // 平台
+    'userAgent': '', // 特殊标识放刷策略
+    'phoneType': '', // 机型
+    'version': '', // app版本
+    'sysVersion': '', // 系统版本
+    'deviceId': '' // 设备ID
   }
 
   return new Promise((resolve, reject) => {

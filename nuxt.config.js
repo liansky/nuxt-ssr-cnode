@@ -77,30 +77,32 @@ module.exports = {
     sizes: [16, 120, 144, 152, 192, 384, 512]
   },
 
-  babel: {
-    comments: true,
-    plugins: [
-      '@babel/plugin-transform-runtime',
-      '@babel/plugin-transform-async-to-generator'
-    ],
-    presets ({ isServer }) {
-      return [
-        [
-          '@nuxtjs/babel-preset-app',
-          {
-            targets: isServer ? { node: '8.0.0' } : { browsers: ['Android >= 4.0', 'ios >= 7'] }
-          }
-        ]
-      ]
-    }
-  },
-
   /*
   ** Build configuration
   */
   build: {
     analyze: false,
+
     publicPath: 'http://h5.9f.cn' + '/_nuxt/',
+
+    babel: {
+      comments: true,
+      plugins: [
+        '@babel/plugin-transform-runtime',
+        '@babel/plugin-transform-async-to-generator'
+      ],
+      presets ({ isServer }) {
+        return [
+          [
+            '@nuxtjs/babel-preset-app',
+            {
+              targets: isServer ? { node: '8.0.0' } : { browsers: ['Android >= 4.0', 'ios >= 7'] }
+            }
+          ]
+        ]
+      }
+    },
+
     postcss: {
       plugins: {
         'postcss-import': {}, // 支出@import css 输出文件

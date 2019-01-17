@@ -1,7 +1,13 @@
 const pkg = require('./package')
 
+const { host } = require('./config/env')
+
 module.exports = {
   mode: 'universal',
+
+  env: {
+    host
+  },
 
   /*
   ** Headers of the page
@@ -53,7 +59,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
@@ -63,12 +70,7 @@ module.exports = {
     proxy: true
   },
 
-  proxy: {
-    '/api': {
-      target: 'https://cnodejs.org',
-      pathRewrite: { '^/api': 'api' }
-    }
-  },
+  proxy: host.proxyTable || {},
 
   icon: {
     iconSrc: '/static/icon.png',
@@ -79,6 +81,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    analyze: false,
     publicPath: 'http://h5.9f.cn' + '/_nuxt/',
     postcss: {
       plugins: {

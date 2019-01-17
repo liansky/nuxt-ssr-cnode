@@ -37,6 +37,7 @@
 
 <script>
   import { fetch } from '../../plugins/axios'
+  import api from '../../config/api-conf'
 
   export default {
     name: 'ArticleId',
@@ -59,7 +60,7 @@
     },
 
     async asyncData () {
-      const data = await fetch('https://cnodejs.org/api/v1/topics', {
+      const data = await fetch(`${api.appHost}/api/v1/topics`, {
         type: 'get',
         params: {
           page: 1,

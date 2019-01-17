@@ -38,7 +38,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#41b883', height: '4px' },
 
   /*
   ** Global CSS
@@ -75,6 +75,24 @@ module.exports = {
   icon: {
     iconSrc: '/static/icon.png',
     sizes: [16, 120, 144, 152, 192, 384, 512]
+  },
+
+  babel: {
+    comments: true,
+    plugins: [
+      '@babel/plugin-transform-runtime',
+      '@babel/plugin-transform-async-to-generator'
+    ],
+    presets ({ isServer }) {
+      return [
+        [
+          '@nuxtjs/babel-preset-app',
+          {
+            targets: isServer ? { node: '8.0.0' } : { browsers: ['Android >= 4.0', 'ios >= 7'] }
+          }
+        ]
+      ]
+    }
   },
 
   /*

@@ -5,8 +5,9 @@ if (process.env.NODE_ENV === 'development') {
   let proxyTable = host.proxyTable
 
   for (let key in proxyTable) {
-    if (process.client && proxyTable[key].targetHost && host[proxyTable[key].targetHost] !== '') {
-      host[proxyTable[key].targetHost] = key
+    let targetHost = proxyTable[key].targetHost
+    if (process.client && targetHost && host[targetHost] !== '') {
+      host[targetHost] = key
     }
   }
 }

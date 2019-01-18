@@ -14,6 +14,9 @@
       <li>
         <nuxt-link to="/article/3">文章3</nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/creat">创建</nuxt-link>
+      </li>
     </ul>
   </section>
 </template>

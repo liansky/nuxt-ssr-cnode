@@ -36,17 +36,16 @@
 
     data () {
       return {
-        accesstoken: '',
         topic_id: '',
         title: '',
         content: ''
       }
     },
 
-    asyncData ({ app, store }) {
-      let accesstoken = app.$cookies.get('token') || 'b5c58ba4-cfa8-4cf4-b0da-81237b02d278'
-      store.dispatch('user/setToken', accesstoken)
-      return { accesstoken }
+    computed: {
+      accesstoken () {
+        return this.$store.state.user.token
+      }
     },
 
     methods: {

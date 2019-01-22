@@ -11,17 +11,7 @@ axios.interceptors.response.use(
     return response
   },
   (error) => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 404:
-          console.log('请求404')
-          break
-        case 500:
-          console.log('请求500')
-          break
-      }
-    }
-    console.log(error)
+    console.log(error.message)
     return Promise.reject({ code: '-100', message: '网络异常请稍后再试！' })
   }
 )

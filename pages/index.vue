@@ -1,55 +1,98 @@
 <template>
-  <section class="container">
-    <Logo/>
-    <h3 class="title">
-      {{ title }}
-    </h3>
-    <ul class="list">
-      <li>
-        <nuxt-link to="/article/1">文章1</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/article/2">文章2</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/article/3">文章3</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/creat">创建</nuxt-link>
-      </li>
-    </ul>
-  </section>
+  <article class="wrap">
+    <TopicsHeader
+      :userInfo="userInfo"
+    />
+    <TopicsNav :topicType.sync="topicType"/>
+    <div class="topics-list">
+      <TopicsItem
+        v-for="topic in topics[topicType]"
+        :key="topic.id"
+        :topic="topic"
+      />
+    </div>
+    <FloatAdd @click="creatTopics"/>
+  </article>
 </template>
 
 <script>
-  import Logo from '../components/Logo.vue'
 
+  import TopicsHeader from '../components/index/topics-header.vue'
+  import TopicsNav from '../components/index/topics-nav.vue'
+  import TopicsItem from '../components/index/topics-item.vue'
+  import FloatAdd from '../components/index/float-add.vue'
 
   export default {
     name: 'Index',
 
     data () {
       return {
-        title: 'nuxt-ssr-cnode'
+        topicType: 'share'
+      }
+    },
+    components: {
+      FloatAdd,
+      TopicsItem,
+      TopicsNav,
+      TopicsHeader
+    },
+
+    computed: {
+      userInfo () {
+        return this.$store.state.user.userInfo
+      },
+
+      topics () {
+        return this.$store.state.topics
       }
     },
 
+    watch: {
+      topicType (val) {
+        if (this.topics[val] && this.topics[val].length === 0) {
+          this.fetchTopics()
+        }
+      }
+    },
 
-    components: {
-      Logo
+    fetch ({ store }) {
+      return Promise.all([
+        store.dispatch('user/fetchUserInfo'),
+        store.dispatch('topics/fetchTopics', {
+          page: 1,
+          tab: this.topicType,
+          limit: 10,
+          mdrender: false
+        })
+      ])
+    },
+
+    methods: {
+      creatTopics () {
+        this.$router.push('/creat')
+      },
+
+      fetchTopics () {
+        this.$store.dispatch('topics/fetchTopics', {
+          page: 1,
+          tab: this.topicType,
+          limit: 10,
+          mdrender: false
+        })
+      }
     }
   }
 </script>
 
 <style lang="scss">
-
-.container {
-  .title {
-    color: #333;
-    font-size: .42rem;
+  .topics-list {
+    padding-bottom: 40px;
+    position: fixed;
+    top: 188px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .list {
-    font-size: .28rem;
-  }
-}
 </style>

@@ -39,8 +39,9 @@
       }
     },
 
-    asyncData ({ app }) {
-      let accesstoken = app.$cookies.get('token')
+    asyncData ({ app, store }) {
+      let accesstoken = app.$cookies.get('token') || 'b5c58ba4-cfa8-4cf4-b0da-81237b02d278'
+      store.dispatch('user/setToken', accesstoken)
       return { accesstoken }
     },
 
@@ -48,14 +49,14 @@
       creatTopics () {
         fetch(api.appHost + '/api/v1/topics', {
           data: {
-            accesstoken: this.accesstoken || 'b5c58ba4-cfa8-4cf4-b0da-81237b02d278',
+            accesstoken: this.accesstoken,
             tab: 'dev',
             content: this.content,
             title: this.title
           }
         })
           .then((res) => {
-            this.topic_id = res.data.topic_id
+            this.topic_id = res.topic_id
           })
           .catch((err) => {
             console.log(err.message)
@@ -75,7 +76,7 @@
     box-sizing: border-box;
     display: block;
     height: 80px;
-    background-color: #F15B5A;
+    background-color: #258eff;
     font-size: 32px;
     color: #fff;
     margin: 40px 0;

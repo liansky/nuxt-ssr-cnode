@@ -1,28 +1,10 @@
 <template>
   <div class="wrap">
-    <button
-      class="btn"
-      type="button"
-      @click="updateAsk"
-    >修改姓名、tab</button>
-
+    <h3>{{ topic.title }}</h3>
     <ul class="list">
-      <li>
-        <div class="key">文章ID:</div>
-        <div class="val">{{ $route.params.id }}</div>
-      </li>
-      <li :class="updateBg ? 'li-bg' : ''">
-        <div class="key">姓名：</div>
-        <div class="val">{{ name }}</div>
-      </li>
-      <li>
-        <div class="key">年龄：</div>
-        <div class="val">{{ age }}</div>
-      </li>
-      <template v-for="(value, key) in topic[1]">
+      <template v-for="(value, key) in topic">
         <li
           :key="key"
-          :class="updateBg && key === 'tab' ? 'li-bg' : ''"
         >
           <div class="key">{{ key }} :</div>
           <div
@@ -44,66 +26,56 @@
 
     data () {
       return {
-        age: '30',
-        updateBg: false,
-        topic: []
+        topic: {}
       }
-    },
-
-    validate ({ params }) {
-      // 必须是number类型
-      return /^\d+$/.test(params.id)
     },
 
     fetch () {
       console.log('fetch')
     },
 
-    async asyncData () {
-      const data = await fetch(`${api.appHost}/api/v1/topics`, {
-        type: 'get',
-        params: {
-          page: 1,
-          tab: 'ask',
-          limit: 2
-        }
-      })
+    async asyncData ({ params }) {
       console.log('asyncData')
-      return { topic: data.data, name: 'lhg' }
+      const data = await fetch(`${api.topicDetail}/${params.id}`, {
+        type: 'get'
+      })
+      return { topic: data.data }
     },
 
     beforeCreate () {
       console.log('beforeCreate')
     },
 
-    async created () {
+    created () {
       console.log('created')
     },
 
-    async mounted () {
+    mounted () {
       console.log('mounted')
     },
 
     methods: {
-      updateAsk () {
-        this.name = '连合国'
-        this.topic[1].tab = '测试'
-        this.updateBg = true
-      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .wrap {
-    padding: 0 20px;
+    /*padding: 0 20px;*/
     font-size: 28px;
+    h3 {
+      background-color: #fff;
+      color: #333;
+      line-height: 80px;
+      text-align: center;
+      font-size: 32px;
+    }
   }
   .btn {
     box-sizing: border-box;
     display: block;
     height: 80px;
-    background-color: #F15B5A;
+    background-color: #258eff;
     font-size: 32px;
     color: #fff;
     margin: 40px 0;

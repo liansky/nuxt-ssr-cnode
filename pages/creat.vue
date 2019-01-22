@@ -1,25 +1,29 @@
 <template>
-  <div class="wrap">
-    <input
-      v-model="title"
-      type="text"
-      placeholder="请输入标题"
-      class="input"
-    >
-    <textarea
-      v-model="content"
-      class="textarea"
-      cols="7"
-      rows="10"
-      placeholder="输入内容"
-    />
+  <div>
+    <h3 class="title">发个贴测试一下</h3>
+    <div class="wrap">
+      <input
+        v-model="title"
+        type="text"
+        placeholder="请输入标题"
+        class="input"
+      >
+      <textarea
+        v-model="content"
+        class="textarea"
+        cols="7"
+        rows="10"
+        placeholder="输入内容"
+      />
 
-    <button
-      class="btn"
-      type="button"
-      @click="creatTopics"
-    >提交</button>
-    <p>topic_id: {{ topic_id }}</p>
+      <button
+        class="btn"
+        type="button"
+        @click="creatTopics"
+      >提交</button>
+      <p>topic_id: {{ topic_id }}</p>
+    </div>
+
   </div>
 </template>
 
@@ -72,6 +76,14 @@
     font-size: 28px;
   }
 
+  .title {
+    background-color: #258eff;
+    color: #fff;
+    line-height: 100px;
+    font-size: 32px;
+    text-align: center;
+  }
+
   .btn {
     box-sizing: border-box;
     display: block;
@@ -84,7 +96,7 @@
   }
 
   .input {
-    line-height: 80px;
+    line-height: 88px;
     background-color: #fff;
     font-size: 28px;
     display: block;

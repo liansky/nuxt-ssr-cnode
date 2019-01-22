@@ -60,7 +60,7 @@
         store.dispatch('user/fetchUserInfo'),
         store.dispatch('topics/fetchTopics', {
           page: 1,
-          tab: this.topicType,
+          tab: 'share',
           limit: 10,
           mdrender: false
         })

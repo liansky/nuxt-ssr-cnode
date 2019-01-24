@@ -19,7 +19,7 @@
 
 <script>
   import { fetch } from '../../plugins/axios'
-  import api from '../../config/api-conf'
+  import api from '../../api/api-conf'
 
   export default {
     name: 'ArticleId',
@@ -61,7 +61,6 @@
 
 <style lang="scss" scoped>
   .wrap {
-    /*padding: 0 20px;*/
     font-size: 28px;
     h3 {
       background-color: #fff;

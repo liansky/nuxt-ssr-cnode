@@ -28,8 +28,7 @@
 </template>
 
 <script>
-  import { fetch } from '../plugins/axios'
-  import api from '../config/api-conf'
+  import { creatTopics } from '../api/topics'
 
   export default {
     name: 'Creat',
@@ -49,21 +48,15 @@
     },
 
     methods: {
-      creatTopics () {
-        fetch(api.appHost + '/api/v1/topics', {
-          data: {
-            accesstoken: this.accesstoken,
-            tab: 'dev',
-            content: this.content,
-            title: this.title
-          }
-        })
-          .then((res) => {
-            this.topic_id = res.topic_id
-          })
-          .catch((err) => {
-            console.log(err.message)
-          })
+      async creatTopics () {
+        const res = await creatTopics({
+          accesstoken: this.accesstoken,
+          tab: 'dev',
+          content: this.content,
+          title: this.title
+        }).catch(err => alert(err.message))
+
+        this.topic_id = res.topic_id
       }
     }
   }

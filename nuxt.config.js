@@ -64,6 +64,16 @@ module.exports = {
     'cookie-universal-nuxt'
 
   ],
+
+  router: {
+    middleware: ['auto'],
+    linkActiveClass: 'link-active',
+    extendRoutes (routes) {},
+    scrollBehavior (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
+  },
+
   /*
   ** Axios module configuration
   */
@@ -85,7 +95,7 @@ module.exports = {
   build: {
     analyze: false,
 
-    publicPath: 'http://h5.9f.cn' + '/_nuxt/',
+    // publicPath: 'http://h5.9f.cn' + '/_nuxt/',
 
     babel: {
       comments: true,

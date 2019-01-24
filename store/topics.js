@@ -2,7 +2,7 @@
  * 主题列表
  */
 import { fetch } from '../plugins/axios'
-import api from '../config/api-conf'
+import api from '../api/api-conf'
 
 export const state = () => {
   return {

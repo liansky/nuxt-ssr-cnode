@@ -12,6 +12,8 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+
 export default {
   appHost: host.appHost,
   topics: `${host.appHost}/api/v1/topics`, // 主题首页

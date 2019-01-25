@@ -10,7 +10,8 @@
           <div
             class="val"
             v-html="value"
-          />
+          >
+          </div>
         </li>
       </template>
     </ul>

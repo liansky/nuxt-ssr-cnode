@@ -67,7 +67,31 @@ module.exports = {
       }
     ],
 
+    // vue props 中横线命名
     'vue/attribute-hyphenation': 'off',
+
+    // HTML单一节点换行
+    'vue/singleline-html-element-content-newline': 'off',
+
+    // 标签括号前后空格
+    'vue/html-closing-bracket-spacing': 'off',
+
+    // HTML多节点换行
+    'vue/multiline-html-element-content-newline': 'off',
+
+    // 可以使用v-html
+    'vue/no-v-html': 'off',
+
+    // html常规标签自动关闭不限制
+    'vue/html-self-closing': ["error", {
+      'html': {
+        'void': 'never',
+        'normal': 'any',
+        'component': 'always'
+      },
+      'svg': 'always',
+      'math': 'always'
+    }],
 
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 
